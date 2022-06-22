@@ -1,0 +1,16 @@
+--주석 DROP TABLE m1board;
+
+CREATE TABLE m1board(
+	no 			NUMBER 			PRIMARY KEY,
+	title 		VARCHAR2(100) 	NOT NULL,
+	name 		VARCHAR2(30) 	NOT NULL,
+	password 	VARCHAR2(30) 	NOT NULL,
+	content 	VARCHAR2(4000) 	NOT NULL,
+	writeday	DATE			DEFAULT SYSDATE,
+	readcount	NUMBER			DEFAULT 0
+);
+
+-- DROP SEQUENCE m1board_seq
+CREATE SEQUENCE m1board_seq NOCACHE;
+
+SELECT * FROM M1BOARD;
