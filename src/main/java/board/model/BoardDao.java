@@ -222,7 +222,7 @@ public class BoardDao { // DAO(Data Access Object)
 			pstmt.setLong(1, boardDto.getNo());
 			pstmt.setString(2, boardDto.getPassword());
 			
-			result = pstmt.executeUpdate() > 0 ? true : false;
+			result = (pstmt.executeUpdate() > 0);
 			
 		} catch(Exception e) {
 			e.printStackTrace();

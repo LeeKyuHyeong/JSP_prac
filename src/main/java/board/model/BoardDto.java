@@ -55,7 +55,8 @@ public class BoardDto {		//Dto(Data Transfer Object)는 Vo(Value Object)
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Board Dto";
+		return "BoardDto [no=" + getNo() + ", title=" + getTitle() + ", name= " + getName() + ", password=" + getPassword() + ", content= " + getContent() + ", writeday= " + getWriteday()
+		+ ", readcount= " + getReadcount() + "]";
 	}
 	
 	

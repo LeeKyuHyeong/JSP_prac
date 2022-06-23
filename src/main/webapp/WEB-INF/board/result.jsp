@@ -7,9 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-	//response.sendRedirect("http://naver.com");
-	response.sendRedirect("BoardList.do");
-%>
+<script type="text/javascript">
+	alert('${msg}');
+	location.href='${url}';
+	
+	
+</script>
 </body>
 </html>
