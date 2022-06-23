@@ -1,4 +1,4 @@
---주석 DROP TABLE m1board;
+--DROP TABLE m1board;
 
 CREATE TABLE m1board(
 	no 			NUMBER 			PRIMARY KEY,
@@ -10,7 +10,7 @@ CREATE TABLE m1board(
 	readcount	NUMBER			DEFAULT 0
 );
 
--- DROP SEQUENCE m1board_seq
+--DROP SEQUENCE m1board_seq
 CREATE SEQUENCE m1board_seq NOCACHE;
 
 SELECT * FROM M1BOARD;
