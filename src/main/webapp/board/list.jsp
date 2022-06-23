@@ -4,7 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	BoardDao boardDao = BoardDao.getInstance();
-	System.out.println("리스트에서의 싱글톤hash : " + boardDao.hashCode());
 	List<BoardDto> list = boardDao.getBoardList();
 %>
 <!DOCTYPE html>
@@ -27,7 +26,7 @@
 	<% for(BoardDto dto : list) {%>
 	<tr>
 		<td><%=dto.getNo() %></td>
-		<td><%=dto.getTitle() %></td>
+		<td><a href="content.jsp?no=<%=dto.getNo() %>"><%=dto.getTitle() %></a></td>
 		<td><%=dto.getName() %></td>
 		<td><%=dto.getWriteday() %></td>
 		<td align="right"><%=dto.getReadcount() %></td>

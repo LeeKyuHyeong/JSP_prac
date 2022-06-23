@@ -2,20 +2,17 @@
 <%@page import="board.model.BoardDto"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	String title = request.getParameter("title");
-	String name = request.getParameter("name");
+	long no = Long.parseLong(request.getParameter("no"));
+
+	
 	String pwd = request.getParameter("password");
-	String content = request.getParameter("content");
 	
 	BoardDto boardDto = new BoardDto();
-	
-	boardDto.setTitle(title);
-	boardDto.setName(name);
+	boardDto.setNo(no);
 	boardDto.setPassword(pwd);
-	boardDto.setContent(content);
 	
 	BoardDao boardDao = BoardDao.getInstance();
-	boolean result = boardDao.insertBoard(boardDto);
+	boolean result = boardDao.deleteBoard(boardDto);	
 	
 %>
 <!DOCTYPE html>
@@ -26,11 +23,14 @@
 </head>
 <body>
 <script type="text/javascript">
+
+	if(!confirm('삭제하시겠습니까?')) history.back();
+
 	<%if(result) { %>
-		alert("글 등록 성공");
+		alert("글 삭제 성공");
 		location.href="list.jsp";
 	<%}else {%>
-		alert("글 등록 실패");
+		alert("비밀번호가 틀립니다.");
 		history.back();
 	<%} %>
 </script>
