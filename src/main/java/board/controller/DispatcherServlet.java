@@ -13,6 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 public class DispatcherServlet extends HttpServlet {
 	
 	@Override
+	public void init() throws ServletException {
+		
+		
+	}
+	
+	
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String requestURI = request.getRequestURI();
@@ -33,7 +40,7 @@ public class DispatcherServlet extends HttpServlet {
 		} else if(action.equals("/BoardList.do")) {
 			controller = new BoardList();
 			mav = controller.handleRequestInternal(request, response);
-		}
+		} 
 		
 		if(mav != null) {
 			String viewName = mav.getViewName();
