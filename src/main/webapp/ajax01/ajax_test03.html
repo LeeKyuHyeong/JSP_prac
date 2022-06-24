@@ -14,7 +14,9 @@ var createXMLHttpRequest= function(){
 var load = function(url){
 	var xhr = createXMLHttpRequest();
 	var name = document.getElementById('name').value;
-	xhr.open('GET', url + '?name=' + name, true);		//비동기 state 1
+	var age = document.getElementById('age').value;
+	
+	xhr.open('GET', url + '?name=' + name + '&age=' + age, true);		//비동기 state 1
 	
 	xhr.onreadystatechange = function() {		
 		if(xhr.readyState == 4) {
@@ -33,8 +35,11 @@ var process = function(xhr) {
 	document.getElementById('rcvData').innerHTML = '<h1>' + xhr.responseText + '</h1>';
 }
 </script>
-<input type="text" id="name" >
-<input type="button" value="say" onclick="load('iam.jsp');">
+name : <input type="text" id="name" >
+age : <input type="text" id="age" >
+<input type="button" value="say" onclick="load('../Iam');">
+
+
 <hr>
 <div id="rcvData"></div>
 <hr>
