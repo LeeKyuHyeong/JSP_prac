@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+var createXMLHttpRequest= function(){
+	var xhr = new XMLHttpRequest();
+	return xhr;
+}
+
+var load = function(url){
+	//console.log(url);
+	var xhr = createXMLHttpRequest();
+	//console.log('xhr.readyState : ', xhr.readyState);
+	xhr.open('GET', url, true);		//비동기 state 1
+	//console.log('xhr.readyState : ', xhr.readyState);
+	
+	xhr.onreadystatechange = function(){		
+		console.log('xhr.readyState : ' + xhr.readyState);
+		if(xhr.readyState == 4) {
+			if(xhr.status == 200) {
+				console.log('ok~~!');
+				process(xhr);
+			} else {
+				console.log('에러 : ' + xhr.status);
+			}
+		} 
+	}
+	xhr.send(null);
+}
+
+var process = function(xhr) {	
+	document.getElementById('rcvData').innerHTML = xhr.responseText;
+}
+</script>
+<input type="button" value="테스트1" onclick="load('msg.txt');">
+<input type="button" value="테스트2" onclick="load('msg.jsp');">
+<div id="rcvData"></div>
+
+</body>
+</html>

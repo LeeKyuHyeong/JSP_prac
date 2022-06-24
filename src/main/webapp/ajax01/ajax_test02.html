@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+var createXMLHttpRequest= function(){
+	var xhr = new XMLHttpRequest();
+	return xhr;
+}
+
+var load = function(url){
+	var xhr = createXMLHttpRequest();
+	var name = document.getElementById('name').value;
+	xhr.open('GET', url + '?name=' + name, true);		//비동기 state 1
+	
+	xhr.onreadystatechange = function() {		
+		console.log('xhr.readyState : ' + xhr.readyState);
+		if(xhr.readyState == 4) {
+			if(xhr.status == 200) {
+				console.log('ok~~!');
+				process(xhr);
+			} else {
+				console.log('에러 : ' + xhr.status);
+			}
+		} 
+	}
+	xhr.send(null);
+}
+
+var process = function(xhr) {	
+	document.getElementById('rcvData').innerHTML = '<h1>' + xhr.responseText + '</h1>';
+}
+</script>
+<input type="text" id="name" >
+<input type="button" value="say" onclick="load('iam.jsp');">
+<hr>
+<div id="rcvData"></div>
+<hr>
+</body>
+</html>
