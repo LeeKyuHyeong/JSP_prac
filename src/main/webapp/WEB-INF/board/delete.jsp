@@ -1,23 +1,18 @@
-<%@page import="board.model.BoardDto"%>
-<%@page import="board.model.BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-	long no = Long.parseLong(request.getParameter("no"));	
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../css/board.css" type="text/css">
+<link rel="stylesheet" href="css/board.css" type="text/css">
 </head>
 <body>
-<form action="delete_action.jsp" method="post">
+<form action="BoardDeleteAction.do" method="post">
 	<table>
 		<caption>글 삭제</caption>
 		<tr>
 			<th>번호</th>
-			<td><%=no %><input type="hidden" name="no" required value="<%=no %>"/></td>
+			<td>${no }<input type="hidden" name="no" required value="${no }"/></td>
 		</tr>
 		
 		<tr>
