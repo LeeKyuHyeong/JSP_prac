@@ -3,38 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="jquery-3.6.0.js"></script>
 </head>
 <body>
 <script type="text/javascript">
-var createXMLHttpRequest= function(){
-	var xhr = new XMLHttpRequest();
-	return xhr;
-}
-
-var load = function(url){
-	var xhr = createXMLHttpRequest();
-	var name = document.getElementById('name').value;
-	xhr.open('GET', url + '?name=' + name, true);		//비동기 state 1
+$(function(){
 	
-	xhr.onreadystatechange = function() {		
-		if(xhr.readyState == 4) {
-			if(xhr.status == 200) {
-				console.log('ok~~!');
-				process(xhr);
-			} else {
-				console.log('에러 : ' + xhr.status);
+	$('#hello').click(function() {
+		var name = $('#name').val();
+		
+		$.ajax({
+			type:"post",
+			data:{'name' : name},
+			url:"iam.jsp",
+			success:function(rs){
+				$('#rcvData').html(rs);
 			}
-		} 
-	}
-	xhr.send(null);
-}
-
-var process = function(xhr) {	
-	document.getElementById('rcvData').innerHTML = '<h1>' + xhr.responseText + '</h1>';
-}
+		});
+	});
+	
+	
+});
 </script>
-<input type="text" id="name" >
-<input type="button" value="say" onclick="load('iam.jsp');">
+<input type="text" id="name" value="">
+<input type="button" value="say" id="hello">
 <hr>
 <div id="rcvData"></div>
 <hr>

@@ -3,42 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="jquery-3.6.0.js"></script>
 </head>
 <body>
 <script type="text/javascript">
-var createXMLHttpRequest= function(){
-	var xhr = new XMLHttpRequest();
-	return xhr;
-}
-
-var load = function(url){
-	var xhr = createXMLHttpRequest();
-	var name = document.getElementById('name').value;
-	var age = document.getElementById('age').value;
+$(function() {
 	
-	xhr.open('GET', url + '?name=' + name + '&age=' + age, true);		//비동기 state 1
-	
-	xhr.onreadystatechange = function() {		
-		if(xhr.readyState == 4) {
-			if(xhr.status == 200) {
-				console.log('ok~~!');
-				process(xhr);
-			} else {
-				console.log('에러 : ' + xhr.status);
+	$('#say').click(function() {
+		let age = $('#age').val();
+		let name = $('#name').val();
+		
+		$.ajax({
+			url:"../Iam",
+			data: {'age': age, 'name': name},
+			type: 'POST',
+			success: function(rs) {
+				$('#rcvData').html(rs);
 			}
-		} 
-	}
-	xhr.send(null);
-}
-
-var process = function(xhr) {	
-	document.getElementById('rcvData').innerHTML = '<h1>' + xhr.responseText + '</h1>';
-}
+		});
+		
+	});
+	
+});
 </script>
 name : <input type="text" id="name" >
 age : <input type="text" id="age" >
-<input type="button" value="say" onclick="load('../Iam');">
-
+<input type="button" value="say" id="say">
 
 <hr>
 <div id="rcvData"></div>
